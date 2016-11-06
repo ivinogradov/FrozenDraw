@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		A40EA1831DCE72F9006D88D1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1821DCE72F9006D88D1 /* main.m */; };
 		A40EA1861DCE72F9006D88D1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1851DCE72F9006D88D1 /* AppDelegate.m */; };
-		A40EA1891DCE72FA006D88D1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1881DCE72FA006D88D1 /* ViewController.m */; };
 		A40EA18C1DCE72FA006D88D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A40EA18A1DCE72FA006D88D1 /* Main.storyboard */; };
 		A40EA18E1DCE72FA006D88D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A40EA18D1DCE72FA006D88D1 /* Assets.xcassets */; };
 		A40EA1911DCE72FA006D88D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A40EA18F1DCE72FA006D88D1 /* LaunchScreen.storyboard */; };
 		A40EA19C1DCE72FA006D88D1 /* FrozenDrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA19B1DCE72FA006D88D1 /* FrozenDrawTests.m */; };
 		A40EA1A71DCE72FA006D88D1 /* FrozenDrawUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1A61DCE72FA006D88D1 /* FrozenDrawUITests.m */; };
+		A40EA1B71DCE7405006D88D1 /* FDCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */; };
+		A40EA1BB1DCE74D1006D88D1 /* FDCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +40,6 @@
 		A40EA1821DCE72F9006D88D1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A40EA1841DCE72F9006D88D1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A40EA1851DCE72F9006D88D1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A40EA1871DCE72FA006D88D1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A40EA1881DCE72FA006D88D1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A40EA18B1DCE72FA006D88D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A40EA18D1DCE72FA006D88D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A40EA1901DCE72FA006D88D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +50,10 @@
 		A40EA1A21DCE72FA006D88D1 /* FrozenDrawUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrozenDrawUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40EA1A61DCE72FA006D88D1 /* FrozenDrawUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrozenDrawUITests.m; sourceTree = "<group>"; };
 		A40EA1A81DCE72FA006D88D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A40EA1B51DCE7405006D88D1 /* FDCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvasView.h; path = Views/FDCanvasView.h; sourceTree = "<group>"; };
+		A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvasView.m; path = Views/FDCanvasView.m; sourceTree = "<group>"; };
+		A40EA1B91DCE74D1006D88D1 /* FDCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvasViewController.h; path = ViewControllers/FDCanvasViewController.h; sourceTree = "<group>"; };
+		A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvasViewController.m; path = ViewControllers/FDCanvasViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +104,8 @@
 		A40EA1801DCE72F9006D88D1 /* FrozenDraw */ = {
 			isa = PBXGroup;
 			children = (
-				A40EA1841DCE72F9006D88D1 /* AppDelegate.h */,
-				A40EA1851DCE72F9006D88D1 /* AppDelegate.m */,
-				A40EA1871DCE72FA006D88D1 /* ViewController.h */,
-				A40EA1881DCE72FA006D88D1 /* ViewController.m */,
+				A40EA1B81DCE74A2006D88D1 /* ViewControllers */,
+				A40EA1B41DCE73EF006D88D1 /* Views */,
 				A40EA18A1DCE72FA006D88D1 /* Main.storyboard */,
 				A40EA18D1DCE72FA006D88D1 /* Assets.xcassets */,
 				A40EA18F1DCE72FA006D88D1 /* LaunchScreen.storyboard */,
@@ -117,6 +118,8 @@
 		A40EA1811DCE72F9006D88D1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A40EA1841DCE72F9006D88D1 /* AppDelegate.h */,
+				A40EA1851DCE72F9006D88D1 /* AppDelegate.m */,
 				A40EA1821DCE72F9006D88D1 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +141,24 @@
 				A40EA1A81DCE72FA006D88D1 /* Info.plist */,
 			);
 			path = FrozenDrawUITests;
+			sourceTree = "<group>";
+		};
+		A40EA1B41DCE73EF006D88D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A40EA1B51DCE7405006D88D1 /* FDCanvasView.h */,
+				A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A40EA1B81DCE74A2006D88D1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A40EA1B91DCE74D1006D88D1 /* FDCanvasViewController.h */,
+				A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A40EA1891DCE72FA006D88D1 /* ViewController.m in Sources */,
+				A40EA1BB1DCE74D1006D88D1 /* FDCanvasViewController.m in Sources */,
 				A40EA1861DCE72F9006D88D1 /* AppDelegate.m in Sources */,
+				A40EA1B71DCE7405006D88D1 /* FDCanvasView.m in Sources */,
 				A40EA1831DCE72F9006D88D1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
