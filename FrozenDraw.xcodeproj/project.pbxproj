@@ -16,6 +16,8 @@
 		A40EA1A71DCE72FA006D88D1 /* FrozenDrawUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1A61DCE72FA006D88D1 /* FrozenDrawUITests.m */; };
 		A40EA1B71DCE7405006D88D1 /* FDCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */; };
 		A40EA1BB1DCE74D1006D88D1 /* FDCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */; };
+		A4E8036E1DD0DB720034E107 /* FDCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8036D1DD0DB720034E107 /* FDCanvas.m */; };
+		A4E803711DD0F2E40034E107 /* FDDrawingPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E803701DD0F2E40034E107 /* FDDrawingPath.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvasView.m; path = Views/FDCanvasView.m; sourceTree = "<group>"; };
 		A40EA1B91DCE74D1006D88D1 /* FDCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvasViewController.h; path = ViewControllers/FDCanvasViewController.h; sourceTree = "<group>"; };
 		A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvasViewController.m; path = ViewControllers/FDCanvasViewController.m; sourceTree = "<group>"; };
+		A4E8036C1DD0DB720034E107 /* FDCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvas.h; path = Model/FDCanvas.h; sourceTree = "<group>"; };
+		A4E8036D1DD0DB720034E107 /* FDCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvas.m; path = Model/FDCanvas.m; sourceTree = "<group>"; };
+		A4E8036F1DD0F2E40034E107 /* FDDrawingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDDrawingPath.h; path = Model/FDDrawingPath.h; sourceTree = "<group>"; };
+		A4E803701DD0F2E40034E107 /* FDDrawingPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDDrawingPath.m; path = Model/FDDrawingPath.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 		A40EA1801DCE72F9006D88D1 /* FrozenDraw */ = {
 			isa = PBXGroup;
 			children = (
+				A4E8036B1DD0DB360034E107 /* Model */,
 				A40EA1B81DCE74A2006D88D1 /* ViewControllers */,
 				A40EA1B41DCE73EF006D88D1 /* Views */,
 				A40EA18A1DCE72FA006D88D1 /* Main.storyboard */,
@@ -159,6 +166,17 @@
 				A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A4E8036B1DD0DB360034E107 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A4E8036C1DD0DB720034E107 /* FDCanvas.h */,
+				A4E8036D1DD0DB720034E107 /* FDCanvas.m */,
+				A4E8036F1DD0F2E40034E107 /* FDDrawingPath.h */,
+				A4E803701DD0F2E40034E107 /* FDDrawingPath.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,8 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40EA1BB1DCE74D1006D88D1 /* FDCanvasViewController.m in Sources */,
+				A4E803711DD0F2E40034E107 /* FDDrawingPath.m in Sources */,
 				A40EA1861DCE72F9006D88D1 /* AppDelegate.m in Sources */,
 				A40EA1B71DCE7405006D88D1 /* FDCanvasView.m in Sources */,
+				A4E8036E1DD0DB720034E107 /* FDCanvas.m in Sources */,
 				A40EA1831DCE72F9006D88D1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,6 +548,7 @@
 				A40EA1AD1DCE72FA006D88D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A40EA1AE1DCE72FA006D88D1 /* Build configuration list for PBXNativeTarget "FrozenDrawTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +557,7 @@
 				A40EA1B01DCE72FA006D88D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A40EA1B11DCE72FA006D88D1 /* Build configuration list for PBXNativeTarget "FrozenDrawUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +566,7 @@
 				A40EA1B31DCE72FA006D88D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

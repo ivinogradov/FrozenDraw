@@ -32,7 +32,11 @@
                                 <action selector="clearCanvas:" destination="BYZ-38-t0r" id="XaJ-NG-HXc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="9mB-vF-QwA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Color" id="9mB-vF-QwA">
+                            <connections>
+                                <action selector="selectColor:" destination="BYZ-38-t0r" id="tZD-eV-Hsd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="canvasView" destination="8bC-Xf-vdC" id="JQ6-7Z-lLC"/>

@@ -13,4 +13,5 @@
 @interface FDCanvasViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet FDCanvasView *canvasView;
+@property (nonatomic) UIColor *selectedColor;
 @end

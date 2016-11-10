@@ -13,12 +13,16 @@ typedef enum {
 	FDDrawingModeClearing
 } FDDrawingMode;
 
+@interface FDCanvasView()
+@property(nonatomic, weak) FDCanvas * canvas;	//avoid retain cycle if VC is deallocated
+@end
+
 @implementation FDCanvasView {
-	UIBezierPath *_drawPath;
 	FDDrawingMode _drawingMode;
 }
 
 
+/*
 - (instancetype)init {
 	
 	if (self = [super init]) {
@@ -35,7 +39,7 @@ typedef enum {
 - (void) _setup {
 	_drawPath = [UIBezierPath new];
 	_drawingMode = FDDrawingModeDrawing;
-}
+}*
 
 #pragma mark - Drawing methods
 
@@ -52,7 +56,13 @@ typedef enum {
 
 - (void)clearCanvas {
 	//_drawingMode = FDDrawingModeClearing;
-	[self _setup];
+	//[self _setup];
+	_canvas = nil;
+	[self setNeedsDisplay];
+}
+*/
+- (void)reflectCanvas:(FDCanvas *)canvas {
+	_canvas = canvas;
 	[self setNeedsDisplay];
 }
 
@@ -60,8 +70,13 @@ typedef enum {
 - (void)drawRect:(CGRect)rect {
 	
 	if (_drawingMode == FDDrawingModeDrawing) {
-		[[UIColor magentaColor] setStroke];
-		[_drawPath stroke];
+		for (UIColor * color in _canvas.colorsWithDrawingPaths.allKeys) {
+			UIBezierPath * drawPath = _canvas.colorsWithDrawingPaths[color];
+			[color setStroke];
+			[drawPath stroke];
+		}
+		//[_currentColor setStroke];
+		//[_drawPath stroke];
 	} else {					// clearing
 		//CGContextRef context = UIGraphicsGetCurrentContext();
 		//CGContextSaveGState(context);
