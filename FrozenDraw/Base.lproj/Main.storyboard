@@ -35,6 +35,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Color" id="9mB-vF-QwA">
                             <connections>
                                 <action selector="selectColor:" destination="BYZ-38-t0r" id="tZD-eV-Hsd"/>
+                                <segue destination="ald-g4-V4B" kind="show" id="dUR-vJ-DUO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -50,6 +51,40 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="972" y="37.331334332833585"/>
+        </scene>
+        <!--Pick Drawing Color-->
+        <scene sceneID="ggH-t9-IGr">
+            <objects>
+                <collectionViewController title="Pick Drawing Color" id="ald-g4-V4B" customClass="FDColorPickerCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="prototypes" id="5Ly-n9-9jg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G2Y-25-GnI">
+                            <size key="itemSize" width="150" height="150"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colorCell" id="0Jh-Ax-HgV">
+                                <rect key="frame" x="10" y="10" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ald-g4-V4B" id="XA1-JM-lhZ"/>
+                            <outlet property="delegate" destination="ald-g4-V4B" id="1tR-6q-zGx"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6R9-sf-bp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1728.8" y="36.431784107946029"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gtk-Xg-fzl">
