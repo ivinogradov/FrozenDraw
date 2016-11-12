@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import "FDCanvasView.h"
+#import "FDColorPickerCollectionViewController.h"
 
-@interface FDCanvasViewController : UIViewController
+@interface FDCanvasViewController : UIViewController<FDColorPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet FDCanvasView *canvasView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *colorButton;
 @property (nonatomic) UIColor *selectedColor;
+@end
+
+// Auxiliary category
+@interface UIImage (ViewConverter)
++ (UIImage *) imageWithView:(UIView *) view;
 @end

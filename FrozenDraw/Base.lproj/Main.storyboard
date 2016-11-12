@@ -32,15 +32,15 @@
                                 <action selector="clearCanvas:" destination="BYZ-38-t0r" id="XaJ-NG-HXc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Color" id="9mB-vF-QwA">
+                        <barButtonItem key="rightBarButtonItem" id="9mB-vF-QwA">
                             <connections>
-                                <action selector="selectColor:" destination="BYZ-38-t0r" id="tZD-eV-Hsd"/>
                                 <segue destination="ald-g4-V4B" kind="show" id="dUR-vJ-DUO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="canvasView" destination="8bC-Xf-vdC" id="JQ6-7Z-lLC"/>
+                        <outlet property="colorButton" destination="9mB-vF-QwA" id="Yzt-nY-Dae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -56,7 +56,7 @@
         <scene sceneID="ggH-t9-IGr">
             <objects>
                 <collectionViewController title="Pick Drawing Color" id="ald-g4-V4B" customClass="FDColorPickerCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="prototypes" id="5Ly-n9-9jg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="5Ly-n9-9jg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@interface FDColorPickerCollectionViewController : UICollectionViewController
-
+@protocol FDColorPickerDelegate
+-(void) newColorPicked:(UIColor *) pickedColor;
 @end
+
+
+@interface FDColorPickerCollectionViewController : UICollectionViewController
+@property (nonatomic, weak) id<FDColorPickerDelegate> delegate;
+@end
+
