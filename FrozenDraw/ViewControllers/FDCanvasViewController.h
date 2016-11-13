@@ -20,5 +20,6 @@
 
 // Auxiliary category
 @interface UIImage (ViewConverter)
+//TODO: documentation
 + (UIImage *) imageWithView:(UIView *) view;
 @end

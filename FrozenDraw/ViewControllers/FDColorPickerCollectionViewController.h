@@ -10,6 +10,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 @protocol FDColorPickerDelegate
+//TODO: documentation
 -(void) newColorPicked:(UIColor *) pickedColor;
 @end
 

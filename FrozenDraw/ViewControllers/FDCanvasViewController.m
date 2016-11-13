@@ -15,6 +15,8 @@
 
 @implementation FDCanvasViewController
 
+#pragma mark - VC Lifecycle
+
 - (void)viewDidLoad {
 	_canvas = [FDCanvas new];
 	_selectedColor = [UIColor blackColor];
@@ -26,6 +28,8 @@
 	_colorButton.tintColor = _selectedColor;
 }
 
+#pragma mark - Target Actions
+
 - (IBAction)pan:(UIPanGestureRecognizer *)sender {
 	
 	CGPoint translation, destination;
@@ -35,7 +39,6 @@
 	
 	switch (sender.state) {
 		case UIGestureRecognizerStateBegan:
-			//_canvasView.startingPoint = [sender locationInView:_canvasView];
 			[drawingPath moveToPoint:[sender locationInView:_canvasView]];
 			break;
 			
@@ -50,11 +53,10 @@
 			[drawingPath drawLineToPoint:destination];
 			
 			//update canvas view
-			//_canvasView.drawPath = drawingPath;
-			//[_canvasView drawLineToPoint:destination];
 			[_canvasView reflectCanvas:_canvas];
 			
-			[sender setTranslation:CGPointZero inView:_canvasView];				//reset cumulative distance to zero
+			//reset cumulative distance to zero
+			[sender setTranslation:CGPointZero inView:_canvasView];
 			break;
 			
 		default:
@@ -77,11 +79,8 @@
 }
 
  #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
+
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
 	 ((FDColorPickerCollectionViewController *)[segue destinationViewController]).delegate = self;
  }
 						  
@@ -93,7 +92,7 @@
 @end
 
 @implementation UIImage (ViewConverter)
-
+//FIXME: Move to UIImage+ViewConverter.h
 + (UIImage *) imageWithView:(UIView *) view {
 	UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
 	[view.layer renderInContext:UIGraphicsGetCurrentContext()];

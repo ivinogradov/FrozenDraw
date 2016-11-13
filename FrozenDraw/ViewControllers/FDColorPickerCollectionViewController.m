@@ -19,35 +19,27 @@ static NSString * const reuseIdentifier = @"colorCell";
 static const int kNumberOfColors  = 15;
 static const CGFloat kCellPadding = 10.0;
 
+#pragma mark - VC Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 	
 	UIColor * tealColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.5 alpha:1]; //make 1 more color to make it 15 so they fit nicely on the screen
 	
 	// Setup all standard iOS colors
-	kColors = @[[UIColor blackColor], [UIColor darkGrayColor], [UIColor grayColor], [UIColor lightGrayColor], [UIColor whiteColor],		//monocrome
-				[UIColor brownColor], [UIColor redColor] , [UIColor orangeColor], [UIColor yellowColor],								//red spectrum
-				[UIColor greenColor], tealColor, [UIColor cyanColor], [UIColor blueColor] , [UIColor magentaColor], [UIColor purpleColor]];		//blue spectrum
+	kColors = @[[UIColor blackColor], [UIColor darkGrayColor], [UIColor grayColor], [UIColor lightGrayColor], [UIColor whiteColor],			//monocrome
+				[UIColor brownColor], [UIColor redColor] , [UIColor orangeColor], [UIColor yellowColor],									//red spectrum
+				[UIColor greenColor], tealColor, [UIColor cyanColor], [UIColor blueColor] , [UIColor magentaColor], [UIColor purpleColor]];	//blue spectrum
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	[self.collectionView performBatchUpdates:nil completion:nil];
+// Reload the collection view on rotations and other layout changes
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+	[coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+		[self.collectionView performBatchUpdates:nil completion:nil];
+	}];
+	
+	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -58,7 +50,7 @@ static const CGFloat kCellPadding = 10.0;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return kNumberOfColors;	//use all 14 iOS defined colors
+    return kNumberOfColors;	//use all 14 iOS defined colors + teal
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,6 +92,17 @@ static const CGFloat kCellPadding = 10.0;
 	return [self _sizeOfCellForHeighestDimentions:heighestDimension andLowestDimension:lowestDimension];
 }
 
+
+#pragma mark <UICollectionViewDelegate>
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	[_delegate newColorPicked:kColors[indexPath.row]];
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Auxiliary methods
+
+
 /*!
  *	@brief Calculates the optimal size for a cell given supplied screen dimensions.
  *	@description This method would return a CGSize (to size the UICollectionView cell) based on visible screen dimensions
@@ -122,40 +125,5 @@ static const CGFloat kCellPadding = 10.0;
 	CGFloat cellDimension = MIN(availableSpaceInHeighestDimension / numberOfColorsPerHeighestDimension, availableSpaceInLowestDimension / numberOfColorsPerLowestDimension);
 	return CGSizeMake(cellDimension, cellDimension);
 }
-
-#pragma mark <UICollectionViewDelegate>
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	[_delegate newColorPicked:kColors[indexPath.row]];
-	[self.navigationController popViewControllerAnimated:YES];
-}
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-
-
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end
