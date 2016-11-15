@@ -10,6 +10,13 @@
 
 @implementation FDDrawingPath
 
+-(instancetype) initWithColor:(UIColor *) color {
+	if (self = [super init]) {
+		_pathColor = color;
+	}
+	return self;
+}
+
 -(void) moveToPoint:(CGPoint)point {
 	[super moveToPoint:point];
 	_lastTouchedPoint = point;

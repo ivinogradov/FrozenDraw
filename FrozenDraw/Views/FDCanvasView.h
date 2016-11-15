@@ -29,6 +29,6 @@
  */
 //- (void)clearCanvas;
 
-- (void)reflectCanvas:(FDCanvas *)canvas;
+//- (void)reflectCanvas:(FDCanvas *)canvas;
 
 @end

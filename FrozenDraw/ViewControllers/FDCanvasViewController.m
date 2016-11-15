@@ -13,7 +13,9 @@
 @property (nonatomic, readonly) FDCanvas *canvas;
 @end
 
-@implementation FDCanvasViewController
+@implementation FDCanvasViewController {
+	CAShapeLayer *currentLayer;
+}
 
 #pragma mark - VC Lifecycle
 
@@ -34,16 +36,27 @@
 	
 	CGPoint translation, destination;
 	
-	//get path from model
-	FDDrawingPath *drawingPath = [_canvas drawingPathForColor:_selectedColor];
+	//get last path from model
+	FDDrawingPath *drawingPath;
+	//CAShapeLayer *currentLayer;
 	
 	switch (sender.state) {
-		case UIGestureRecognizerStateBegan:
+		case UIGestureRecognizerStateBegan: {
+			//Update model - start new path
+			drawingPath = [[FDDrawingPath alloc] initWithColor:_selectedColor];
 			[drawingPath moveToPoint:[sender locationInView:_canvasView]];
-			break;
+			[_canvas.strokes addObject:drawingPath];
 			
+			//Update view
+			CAShapeLayer * layer = (CAShapeLayer *)_canvasView.layer; // get main layer in canvas view
+			currentLayer  = [CAShapeLayer layer];					  // create new layer for drawing
+			[layer addSublayer:currentLayer];						  // Add current layer as drawing sublayer
+			
+			break;
+		}
 		case UIGestureRecognizerStateChanged: //fall through
-		case UIGestureRecognizerStateEnded:
+		case UIGestureRecognizerStateEnded: {
+			drawingPath = [_canvas.strokes lastObject];		  //FIXME: replace with linked list if available
 			//get cumulative distance
 			translation = [sender translationInView:_canvasView];
 			//calculate end point
@@ -52,21 +65,45 @@
 			//update canvas model
 			[drawingPath drawLineToPoint:destination];
 			
-			//update canvas view
-			[_canvasView reflectCanvas:_canvas];
-			
+			//update drawing layer of canvas view with current drawing path
+			currentLayer.strokeColor = drawingPath.pathColor.CGColor;
+			currentLayer.path = drawingPath.CGPath;
+			currentLayer.lineWidth = 5.0;
+
+			/*
+			if (sender.state == UIGestureRecognizerStateEnded) {
+				//finalize the drawing and add it as sublayer
+				//currentLayer = [layer copy];
+				//layer = nil;
+				currentLayer.strokeColor=drawingPath.pathColor.CGColor;
+				currentLayer.path = drawingPath.CGPath;
+				currentLayer.lineWidth = 2.0;
+				
+				
+				layer.path = nil;
+			}
+			*/
 			//reset cumulative distance to zero
 			[sender setTranslation:CGPointZero inView:_canvasView];
 			break;
+		}
 			
+		case UIGestureRecognizerStateFailed:		//fall through
+		case UIGestureRecognizerStateCancelled:
+			[currentLayer removeFromSuperlayer];
+			break;
 		default:
 			break;
 	}
 }
 
 - (IBAction)clearCanvas:(UIBarButtonItem *)sender {
-	[_canvas.colorsWithDrawingPaths removeAllObjects];
-	[_canvasView reflectCanvas:_canvas];
+	for (int i =0; i < _canvas.strokes.count; i++) {
+		CALayer *layer = [[_canvasView.layer sublayers] lastObject];
+		[layer removeFromSuperlayer];
+	}
+	[_canvas.strokes removeAllObjects];
+	//[_canvasView reflectCanvas:_canvas];
 }
 
 

@@ -12,12 +12,12 @@
 
 - (instancetype) init {
 	if (self=[super init]) {
-		_colorsWithDrawingPaths = [NSMutableDictionary new];
+		_strokes = [NSMutableArray new];
 	}
 	
 	return self;
 }
-
+/*
 - (FDDrawingPath*) drawingPathForColor:(UIColor *)color {
 	FDDrawingPath * drawingPath = _colorsWithDrawingPaths[color];
 	if (!drawingPath) {
@@ -27,5 +27,5 @@
 	
 	return drawingPath;
 }
-
+*/
 @end

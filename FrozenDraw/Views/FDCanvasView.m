@@ -14,13 +14,20 @@ typedef enum {
 } FDDrawingMode;
 
 @interface FDCanvasView()
-@property(nonatomic, weak) FDCanvas * canvas;	//avoid retain cycle if VC is deallocated
+@property(nonatomic, weak) FDCanvas * canvas;	//avoid retain cycle if VC is deallocated //FIXME: this may not be necessary with Shape layer approach
 @end
 
 @implementation FDCanvasView {
 	FDDrawingMode _drawingMode;
 }
 
+-(CAShapeLayer*)shapeLayer {
+	return (id)self.layer;
+}
+
++(Class)layerClass {
+	return [CAShapeLayer class];
+}
 
 /*
 - (instancetype)init {
@@ -60,7 +67,7 @@ typedef enum {
 	_canvas = nil;
 	[self setNeedsDisplay];
 }
-*/
+
 - (void)reflectCanvas:(FDCanvas *)canvas {
 	_canvas = canvas;
 	[self setNeedsDisplay];
@@ -70,10 +77,9 @@ typedef enum {
 - (void)drawRect:(CGRect)rect {
 	
 	if (_drawingMode == FDDrawingModeDrawing) {
-		for (UIColor * color in _canvas.colorsWithDrawingPaths.allKeys) {
-			UIBezierPath * drawPath = _canvas.colorsWithDrawingPaths[color];
-			[color setStroke];
-			[drawPath stroke];
+		for (FDDrawingPath * stroke in _canvas.strokes) {
+			[stroke.pathColor setStroke];
+			[stroke stroke];
 		}
 		//[_currentColor setStroke];
 		//[_drawPath stroke];
@@ -86,6 +92,6 @@ typedef enum {
 		//CGContextRestoreGState(context);
 		//[[UIColor blackColor] setStroke];
 	}
-}
+}*/
 
 @end

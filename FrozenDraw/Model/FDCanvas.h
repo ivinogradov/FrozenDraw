@@ -12,8 +12,8 @@
 
 @interface FDCanvas : NSObject
 
-@property (nonatomic) NSMutableDictionary<UIColor *,FDDrawingPath *> *colorsWithDrawingPaths;
+@property (nonatomic) NSMutableArray<FDDrawingPath *> * strokes;
 
-- (FDDrawingPath*) drawingPathForColor:(UIColor *)color;
+//- (FDDrawingPath*) drawingPathForColor:(UIColor *)color;
 
 @end
