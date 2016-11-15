@@ -8,7 +8,8 @@
 
 #import "FDDrawingPath.h"
 
-/*! @brief This class if the model for our drawing. It contains all the necessary information
+/*! 
+ *	@discussion This class if the model for our drawing. It contains all the necessary information
  *			for the drawing to be rendered.
  */
 @interface FDCanvas : NSObject

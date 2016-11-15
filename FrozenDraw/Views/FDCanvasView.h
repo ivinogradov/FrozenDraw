@@ -25,14 +25,12 @@
 -(void)removeCurrentStroke;
 
 /*!
- *	@brief Removes the current stroke in progress from the canvas.
+ *	@discussion Removes the current stroke in progress from the canvas.
  *			If there is no current stroke in progress available, removes the most recent completed stroke.
  */
 -(void)removeLastStroke;
 
-/*! 
- @brief Clears the drawing in canvas
- */
+/*! @brief Clears the drawing in canvas */
 -(void)clearCanvas;
 
 @end

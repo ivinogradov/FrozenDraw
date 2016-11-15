@@ -20,6 +20,6 @@
 /*! @brief A button displaying the current color as well as launching the color picker. */
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *colorButton;
 
-/*! @brief Curren color we are drawing with. */
+/*! @brief Current color we are drawing with. */
 @property (nonatomic) UIColor *selectedColor;
 @end

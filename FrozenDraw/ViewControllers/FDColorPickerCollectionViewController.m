@@ -106,7 +106,7 @@ static const CGFloat kCellPadding = 10.0;
 
 /*!
  *	@brief Calculates the optimal size for a cell given supplied screen dimensions.
- *	@description This method would return a CGSize (to size the UICollectionView cell) based on visible screen dimensions
+ *	@discussion This method would return a CGSize (to size the UICollectionView cell) based on visible screen dimensions
  *		such that all cells of this size will fit on the screen and won't be cut off. It assumes 3 cells per lowest dimension
  *		and takes into account the total number of cells (kNumberOfColors) and the space between cells (kCellPadding).
  *	@param heighestDimension Size of the long side of the visible part of the view frame

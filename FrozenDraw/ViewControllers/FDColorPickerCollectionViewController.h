@@ -11,7 +11,8 @@
 
 @protocol FDColorPickerDelegate
 
-/*! @brief This is a delegate callback method which is called every time a user selects a new color from the color picker.
+/*! 
+ *	@brief This is a delegate callback method which is called every time a user selects a new color from the color picker.
  *	@param pickedColor is a UIColor object for the color that was selected.
  */
 -(void) newColorPicked:(UIColor *) pickedColor;
@@ -19,7 +20,7 @@
 
 @interface FDColorPickerCollectionViewController : UICollectionViewController
 
-/*! @brief A week reference to the delegate object on which the FDColorPickerDelegate protocol methods are being called. */
+/*! @brief A weak reference to the delegate object on which the FDColorPickerDelegate protocol methods are being called. */
 @property (nonatomic, weak) id<FDColorPickerDelegate> delegate;
 @end
 

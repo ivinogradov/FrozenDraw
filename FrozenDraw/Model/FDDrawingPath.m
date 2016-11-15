@@ -16,7 +16,6 @@ static const CGFloat kDefaultLineWidth = 2.0;
 	return [self initWithColor:color andWidth:kDefaultLineWidth];
 }
 
-//designated initializer
 -(instancetype) initWithColor:(UIColor *)color andWidth:(CGFloat) width {
 	if (self = [super init]) {
 		_pathColor = color;

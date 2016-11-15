@@ -110,7 +110,8 @@ static const CGFloat kButtonDimension = 30.0;
 						  
 #pragma mark - Auxiliary Methods
 
-/*! @brief Computes the end coordinate of the mouse movement given the starting coordinate and translation.
+/*! 
+ *	@brief Computes the end coordinate of the mouse movement given the starting coordinate and translation.
  *	@param startingPoint represents the starting coordinate of the mouse movment.
  *	@param translation represents the (X, Y) offeset from the starting point.
  *	@return end coorsinate of the mouse movement given the translation.
