@@ -10,11 +10,16 @@
 #import "FDCanvas.h"
 
 @interface FDCanvasViewController ()
+
+/*! @brief The canvas model object - contains a collection of drawing pathes necessary to making a stroke on the canvas view. */
 @property (nonatomic, readonly) FDCanvas *canvas;
 @end
 
+// Size if the side of the square color button
+static const CGFloat kButtonDimension = 30.0;
+
 @implementation FDCanvasViewController {
-	CAShapeLayer *currentLayer;
+	CAShapeLayer *_currentLayer;
 }
 
 #pragma mark - VC Lifecycle
@@ -24,7 +29,7 @@
 	_selectedColor = [UIColor blackColor];
 	
 	// Make a square for the color buton
-	UIView * buttonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 30.0, 30.0)];
+	UIView * buttonBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, kButtonDimension, kButtonDimension)];
 	
 	_colorButton.image = [UIImage imageWithView:buttonBackgroundView];
 	_colorButton.tintColor = _selectedColor;
@@ -38,59 +43,47 @@
 	
 	//get last path from model
 	FDDrawingPath *drawingPath;
-	//CAShapeLayer *currentLayer;
 	
 	switch (sender.state) {
 		case UIGestureRecognizerStateBegan: {
-			//Update model - start new path
+			//Start new path
 			drawingPath = [[FDDrawingPath alloc] initWithColor:_selectedColor];
 			[drawingPath moveToPoint:[sender locationInView:_canvasView]];
+			
+			//Update model with new path
 			[_canvas.strokes addObject:drawingPath];
 			
-			//Update view
-			CAShapeLayer * layer = (CAShapeLayer *)_canvasView.layer; // get main layer in canvas view
-			currentLayer  = [CAShapeLayer layer];					  // create new layer for drawing
-			[layer addSublayer:currentLayer];						  // Add current layer as drawing sublayer
+			//Update view with new stroke
+			[_canvasView beginNewStroke];
 			
 			break;
 		}
 		case UIGestureRecognizerStateChanged: //fall through
 		case UIGestureRecognizerStateEnded: {
-			drawingPath = [_canvas.strokes lastObject];		  //FIXME: replace with linked list if available
+			//get last path from model
+			drawingPath = [_canvas.strokes lastObject];
+			
 			//get cumulative distance
 			translation = [sender translationInView:_canvasView];
+			
 			//calculate end point
 			destination = [self _getDestinationPointForStartingPoint:drawingPath.lastTouchedPoint andTranslation:translation];
 			
 			//update canvas model
 			[drawingPath drawLineToPoint:destination];
 			
-			//update drawing layer of canvas view with current drawing path
-			currentLayer.strokeColor = drawingPath.pathColor.CGColor;
-			currentLayer.path = drawingPath.CGPath;
-			currentLayer.lineWidth = 5.0;
-
-			/*
-			if (sender.state == UIGestureRecognizerStateEnded) {
-				//finalize the drawing and add it as sublayer
-				//currentLayer = [layer copy];
-				//layer = nil;
-				currentLayer.strokeColor=drawingPath.pathColor.CGColor;
-				currentLayer.path = drawingPath.CGPath;
-				currentLayer.lineWidth = 2.0;
-				
-				
-				layer.path = nil;
-			}
-			*/
-			//reset cumulative distance to zero
+			//update stroke of canvas view with current drawing path
+			[_canvasView updateStrokeWithDrawingPath:drawingPath];
+			
 			[sender setTranslation:CGPointZero inView:_canvasView];
 			break;
 		}
 			
 		case UIGestureRecognizerStateFailed:		//fall through
 		case UIGestureRecognizerStateCancelled:
-			[currentLayer removeFromSuperlayer];
+			//Gesture got canceled due to external even (PN, phone call) - undo it
+			[_canvasView removeCurrentStroke];
+			[_canvas.strokes removeLastObject];
 			break;
 		default:
 			break;
@@ -98,15 +91,9 @@
 }
 
 - (IBAction)clearCanvas:(UIBarButtonItem *)sender {
-	for (int i =0; i < _canvas.strokes.count; i++) {
-		CALayer *layer = [[_canvasView.layer sublayers] lastObject];
-		[layer removeFromSuperlayer];
-	}
 	[_canvas.strokes removeAllObjects];
-	//[_canvasView reflectCanvas:_canvas];
+	[_canvasView clearCanvas];
 }
-
-
 
 #pragma mark - Delegate Callbacks
 
@@ -122,20 +109,16 @@
  }
 						  
 #pragma mark - Auxiliary Methods
+
+/*! @brief Computes the end coordinate of the mouse movement given the starting coordinate and translation.
+ *	@param startingPoint represents the starting coordinate of the mouse movment.
+ *	@param translation represents the (X, Y) offeset from the starting point.
+ *	@return end coorsinate of the mouse movement given the translation.
+ */
 - (CGPoint)_getDestinationPointForStartingPoint:(CGPoint)startingPoint andTranslation: (CGPoint)translation {
 	return CGPointMake(startingPoint.x + translation.x, startingPoint.y + translation.y);
 }
 
 @end
 
-@implementation UIImage (ViewConverter)
-//FIXME: Move to UIImage+ViewConverter.h
-+ (UIImage *) imageWithView:(UIView *) view {
-	UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
-	[view.layer renderInContext:UIGraphicsGetCurrentContext()];
-	UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return image;
-}
 
-@end

@@ -8,27 +8,31 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
-#import "FDCanvas.h"
+#import "FDDrawingPath.h"
 
 @interface FDCanvasView : UIView
 
-/*! @brief Starting coordinate of the curve being drawn. */
-//@property (nonatomic) CGPoint startingPoint;
-//@property (nonatomic) UIBezierPath *drawPath;
-//@property (nonatomic) UIColor *currentColor;
-
+/*! @brief Prepares the canvas view to draw a new stroke. */
+-(void)beginNewStroke;
 
 /*!
- @brief Draws a line from the previos point to the given point.
-		If there was no previos point - starting point is used.
+ *	@brief Updates the currently drawn stroke to follow the drawing path.
+ *	@param drawingPath a path with color to be drawn.
  */
-//- (void)drawLineToPoint:(CGPoint) point;
+-(void)updateStrokeWithDrawingPath:(FDDrawingPath *) drawingPath;
+
+/*! @brief Removes the current stroke in progress from the canvas. */
+-(void)removeCurrentStroke;
+
+/*!
+ *	@brief Removes the current stroke in progress from the canvas.
+ *			If there is no current stroke in progress available, removes the most recent completed stroke.
+ */
+-(void)removeLastStroke;
 
 /*! 
  @brief Clears the drawing in canvas
  */
-//- (void)clearCanvas;
-
-//- (void)reflectCanvas:(FDCanvas *)canvas;
+-(void)clearCanvas;
 
 @end

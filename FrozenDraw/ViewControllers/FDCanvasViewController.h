@@ -10,16 +10,16 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "FDCanvasView.h"
 #import "FDColorPickerCollectionViewController.h"
+#import "UIImage+ViewConverter.h"
 
 @interface FDCanvasViewController : UIViewController<FDColorPickerDelegate>
 
+/*! @brief Canvas view is a UIView object containing managing all the layers with individual strokes. */
 @property (weak, nonatomic) IBOutlet FDCanvasView *canvasView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *colorButton;
-@property (nonatomic) UIColor *selectedColor;
-@end
 
-// Auxiliary category
-@interface UIImage (ViewConverter)
-//TODO: documentation
-+ (UIImage *) imageWithView:(UIView *) view;
+/*! @brief A button displaying the current color as well as launching the color picker. */
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *colorButton;
+
+/*! @brief Curren color we are drawing with. */
+@property (nonatomic) UIColor *selectedColor;
 @end

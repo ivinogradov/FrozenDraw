@@ -10,9 +10,17 @@
 
 @implementation FDDrawingPath
 
+static const CGFloat kDefaultLineWidth = 2.0;
+
 -(instancetype) initWithColor:(UIColor *) color {
+	return [self initWithColor:color andWidth:kDefaultLineWidth];
+}
+
+//designated initializer
+-(instancetype) initWithColor:(UIColor *)color andWidth:(CGFloat) width {
 	if (self = [super init]) {
 		_pathColor = color;
+		self.lineWidth = width;
 	}
 	return self;
 }

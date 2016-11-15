@@ -6,14 +6,14 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "FDDrawingPath.h"
 
+/*! @brief This class if the model for our drawing. It contains all the necessary information
+ *			for the drawing to be rendered.
+ */
 @interface FDCanvas : NSObject
 
+/*! @brief An array of so called strokes, which are UIColor and UIBezierPath packaged together */
 @property (nonatomic) NSMutableArray<FDDrawingPath *> * strokes;
-
-//- (FDDrawingPath*) drawingPathForColor:(UIColor *)color;
 
 @end

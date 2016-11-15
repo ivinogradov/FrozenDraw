@@ -8,28 +8,13 @@
 
 #import "FDCanvasView.h"
 
-typedef enum {
-	FDDrawingModeDrawing,
-	FDDrawingModeClearing
-} FDDrawingMode;
-
-@interface FDCanvasView()
-@property(nonatomic, weak) FDCanvas * canvas;	//avoid retain cycle if VC is deallocated //FIXME: this may not be necessary with Shape layer approach
-@end
-
 @implementation FDCanvasView {
-	FDDrawingMode _drawingMode;
+	CAShapeLayer * _currentLayer;
+	int	_strokeCount;
 }
 
--(CAShapeLayer*)shapeLayer {
-	return (id)self.layer;
-}
+#pragma mark - Initialization
 
-+(Class)layerClass {
-	return [CAShapeLayer class];
-}
-
-/*
 - (instancetype)init {
 	
 	if (self = [super init]) {
@@ -44,54 +29,42 @@ typedef enum {
 }
 
 - (void) _setup {
-	_drawPath = [UIBezierPath new];
-	_drawingMode = FDDrawingModeDrawing;
-}*
-
-#pragma mark - Drawing methods
-
-- (void)drawLineToPoint:(CGPoint) point {
-	[_drawPath addLineToPoint:point];
-	[self setStartingPoint:point];
-	[self setNeedsDisplay];
+	_strokeCount = 0;
 }
 
-- (void)setStartingPoint:(CGPoint)startingPoint {
-	_startingPoint = startingPoint;
-	[_drawPath moveToPoint:startingPoint];
+#pragma mark - Drawing methods
+ 
+-(void)beginNewStroke {
+	_currentLayer= [CAShapeLayer layer];			// create new layer for drawing
+	[self.layer addSublayer:_currentLayer];			// Add current layer as drawing sublayer
+	_strokeCount++;
+}
+
+-(void)updateStrokeWithDrawingPath:(FDDrawingPath *) drawingPath {
+	_currentLayer.strokeColor = drawingPath.pathColor.CGColor;
+	_currentLayer.path = drawingPath.CGPath;
+	_currentLayer.lineWidth = drawingPath.lineWidth;
+}
+
+-(void)removeCurrentStroke {
+	[_currentLayer removeFromSuperlayer];
+	_currentLayer = nil;
+	_strokeCount--;
+}
+
+-(void)removeLastStroke {
+	if (_currentLayer) {
+		[self removeCurrentStroke];
+	} else {
+		[self.layer.sublayers.lastObject removeFromSuperlayer];
+		_strokeCount--;
+	}
 }
 
 - (void)clearCanvas {
-	//_drawingMode = FDDrawingModeClearing;
-	//[self _setup];
-	_canvas = nil;
-	[self setNeedsDisplay];
-}
-
-- (void)reflectCanvas:(FDCanvas *)canvas {
-	_canvas = canvas;
-	[self setNeedsDisplay];
-}
-
-// All drawing/clearing happens here
-- (void)drawRect:(CGRect)rect {
-	
-	if (_drawingMode == FDDrawingModeDrawing) {
-		for (FDDrawingPath * stroke in _canvas.strokes) {
-			[stroke.pathColor setStroke];
-			[stroke stroke];
-		}
-		//[_currentColor setStroke];
-		//[_drawPath stroke];
-	} else {					// clearing
-		//CGContextRef context = UIGraphicsGetCurrentContext();
-		//CGContextSaveGState(context);
-		[[UIColor whiteColor] setFill];
-		UIRectFill(self.bounds);
-		_drawingMode = FDDrawingModeDrawing;
-		//CGContextRestoreGState(context);
-		//[[UIColor blackColor] setStroke];
+	while (_strokeCount > 0) {
+		[self removeLastStroke];
 	}
-}*/
+}
 
 @end

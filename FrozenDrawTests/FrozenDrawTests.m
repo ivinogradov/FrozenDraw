@@ -7,7 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-
+#import "FDCanvasView.h"
+#import "FDDrawingPath.h"
 @interface FrozenDrawTests : XCTestCase
 
 @end
@@ -24,16 +25,36 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testCanvasViewOneLayer {
+	
+	FDCanvasView * canvasView = [[FDCanvasView alloc] init];
+	NSUInteger clearLayers = canvasView.layer.sublayers.count;
+	
+	[canvasView beginNewStroke];
+	XCTAssert(canvasView.layer.sublayers.count == clearLayers + 1);
+	
+	[canvasView updateStrokeWithDrawingPath:[FDDrawingPath new]];
+	XCTAssert(canvasView.layer.sublayers.count == clearLayers + 1);
+	
+	[canvasView removeCurrentStroke];
+	XCTAssert(canvasView.layer.sublayers.count == clearLayers);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testCanvasViewClear {
+	FDCanvasView * canvasView = [[FDCanvasView alloc] init];
+	NSUInteger clearLayers = canvasView.layer.sublayers.count;
+	
+	for (int i = 1; i < 1000; i++) {
+		[canvasView beginNewStroke];
+		XCTAssert(canvasView.layer.sublayers.count == clearLayers + i);
+		
+		[canvasView updateStrokeWithDrawingPath:[FDDrawingPath new]];
+		XCTAssert(canvasView.layer.sublayers.count == clearLayers + i);
+	}
+	
+	[canvasView clearCanvas];
+	XCTAssert(canvasView.layer.sublayers.count == clearLayers);
+	
 }
 
 @end

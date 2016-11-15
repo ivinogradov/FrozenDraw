@@ -14,9 +14,10 @@
 
 @implementation FDColorPickerCollectionViewController
 
+// The color model for the picker
 static NSArray<UIColor *> * kColors;
-static NSString * const reuseIdentifier = @"colorCell";
-static const int kNumberOfColors  = 15;
+static NSString * const reuseIdentifier = @"colorCell";	// not using "k" prefix because that's how the storyboard expects it
+static const int kNumberOfColors  = 15;					//use all 14 iOS defined colors + teal
 static const CGFloat kCellPadding = 10.0;
 
 #pragma mark - VC Lifecycle
@@ -33,7 +34,7 @@ static const CGFloat kCellPadding = 10.0;
 }
 
 
-// Reload the collection view on rotations and other layout changes
+// Reload the collection view (and resize the cells) on rotations and other layout changes
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
 	[coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
 		[self.collectionView performBatchUpdates:nil completion:nil];
@@ -50,7 +51,7 @@ static const CGFloat kCellPadding = 10.0;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return kNumberOfColors;	//use all 14 iOS defined colors + teal
+    return kNumberOfColors;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

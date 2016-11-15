@@ -14,9 +14,10 @@
 		A40EA1911DCE72FA006D88D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A40EA18F1DCE72FA006D88D1 /* LaunchScreen.storyboard */; };
 		A40EA19C1DCE72FA006D88D1 /* FrozenDrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA19B1DCE72FA006D88D1 /* FrozenDrawTests.m */; };
 		A40EA1A71DCE72FA006D88D1 /* FrozenDrawUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1A61DCE72FA006D88D1 /* FrozenDrawUITests.m */; };
-		A40EA1B71DCE7405006D88D1 /* FDCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */; };
 		A40EA1BB1DCE74D1006D88D1 /* FDCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */; };
 		A4234F091DD4E63600E1170B /* FDColorPickerCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4234F081DD4E63600E1170B /* FDColorPickerCollectionViewController.m */; };
+		A464CE961DDAC21400C3C105 /* UIImage+ViewConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = A464CE951DDAC21400C3C105 /* UIImage+ViewConverter.m */; };
+		A464CE9A1DDACA8600C3C105 /* FDCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = A464CE991DDACA8600C3C105 /* FDCanvasView.m */; };
 		A4E8036E1DD0DB720034E107 /* FDCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8036D1DD0DB720034E107 /* FDCanvas.m */; };
 		A4E803711DD0F2E40034E107 /* FDDrawingPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E803701DD0F2E40034E107 /* FDDrawingPath.m */; };
 /* End PBXBuildFile section */
@@ -53,12 +54,14 @@
 		A40EA1A21DCE72FA006D88D1 /* FrozenDrawUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrozenDrawUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40EA1A61DCE72FA006D88D1 /* FrozenDrawUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FrozenDrawUITests.m; sourceTree = "<group>"; };
 		A40EA1A81DCE72FA006D88D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A40EA1B51DCE7405006D88D1 /* FDCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvasView.h; path = Views/FDCanvasView.h; sourceTree = "<group>"; };
-		A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvasView.m; path = Views/FDCanvasView.m; sourceTree = "<group>"; };
 		A40EA1B91DCE74D1006D88D1 /* FDCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvasViewController.h; path = ViewControllers/FDCanvasViewController.h; sourceTree = "<group>"; };
 		A40EA1BA1DCE74D1006D88D1 /* FDCanvasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvasViewController.m; path = ViewControllers/FDCanvasViewController.m; sourceTree = "<group>"; };
 		A4234F071DD4E63600E1170B /* FDColorPickerCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDColorPickerCollectionViewController.h; path = ViewControllers/FDColorPickerCollectionViewController.h; sourceTree = "<group>"; };
 		A4234F081DD4E63600E1170B /* FDColorPickerCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDColorPickerCollectionViewController.m; path = ViewControllers/FDColorPickerCollectionViewController.m; sourceTree = "<group>"; };
+		A464CE941DDAC21400C3C105 /* UIImage+ViewConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ViewConverter.h"; path = "Auxiliary/UIImage+ViewConverter.h"; sourceTree = "<group>"; };
+		A464CE951DDAC21400C3C105 /* UIImage+ViewConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ViewConverter.m"; path = "Auxiliary/UIImage+ViewConverter.m"; sourceTree = "<group>"; };
+		A464CE981DDACA8600C3C105 /* FDCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCanvasView.h; sourceTree = "<group>"; };
+		A464CE991DDACA8600C3C105 /* FDCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCanvasView.m; sourceTree = "<group>"; };
 		A4E8036C1DD0DB720034E107 /* FDCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDCanvas.h; path = Model/FDCanvas.h; sourceTree = "<group>"; };
 		A4E8036D1DD0DB720034E107 /* FDCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FDCanvas.m; path = Model/FDCanvas.m; sourceTree = "<group>"; };
 		A4E8036F1DD0F2E40034E107 /* FDDrawingPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FDDrawingPath.h; path = Model/FDDrawingPath.h; sourceTree = "<group>"; };
@@ -113,9 +116,10 @@
 		A40EA1801DCE72F9006D88D1 /* FrozenDraw */ = {
 			isa = PBXGroup;
 			children = (
+				A464CE971DDACA8600C3C105 /* Views */,
+				A464CE931DDAC1A000C3C105 /* Auxiliary */,
 				A4E8036B1DD0DB360034E107 /* Model */,
 				A40EA1B81DCE74A2006D88D1 /* ViewControllers */,
-				A40EA1B41DCE73EF006D88D1 /* Views */,
 				A40EA18A1DCE72FA006D88D1 /* Main.storyboard */,
 				A40EA18D1DCE72FA006D88D1 /* Assets.xcassets */,
 				A40EA18F1DCE72FA006D88D1 /* LaunchScreen.storyboard */,
@@ -153,15 +157,6 @@
 			path = FrozenDrawUITests;
 			sourceTree = "<group>";
 		};
-		A40EA1B41DCE73EF006D88D1 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A40EA1B51DCE7405006D88D1 /* FDCanvasView.h */,
-				A40EA1B61DCE7405006D88D1 /* FDCanvasView.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		A40EA1B81DCE74A2006D88D1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +166,24 @@
 				A4234F081DD4E63600E1170B /* FDColorPickerCollectionViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A464CE931DDAC1A000C3C105 /* Auxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				A464CE941DDAC21400C3C105 /* UIImage+ViewConverter.h */,
+				A464CE951DDAC21400C3C105 /* UIImage+ViewConverter.m */,
+			);
+			name = Auxiliary;
+			sourceTree = "<group>";
+		};
+		A464CE971DDACA8600C3C105 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A464CE981DDACA8600C3C105 /* FDCanvasView.h */,
+				A464CE991DDACA8600C3C105 /* FDCanvasView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A4E8036B1DD0DB360034E107 /* Model */ = {
@@ -318,10 +331,11 @@
 			files = (
 				A40EA1BB1DCE74D1006D88D1 /* FDCanvasViewController.m in Sources */,
 				A4E803711DD0F2E40034E107 /* FDDrawingPath.m in Sources */,
+				A464CE9A1DDACA8600C3C105 /* FDCanvasView.m in Sources */,
 				A40EA1861DCE72F9006D88D1 /* AppDelegate.m in Sources */,
-				A40EA1B71DCE7405006D88D1 /* FDCanvasView.m in Sources */,
 				A4E8036E1DD0DB720034E107 /* FDCanvas.m in Sources */,
 				A40EA1831DCE72F9006D88D1 /* main.m in Sources */,
+				A464CE961DDAC21400C3C105 /* UIImage+ViewConverter.m in Sources */,
 				A4234F091DD4E63600E1170B /* FDColorPickerCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +532,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = FrozenDrawUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ilya-Vinogradov.FrozenDrawUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = FrozenDraw;
@@ -529,6 +544,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = FrozenDrawUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "Ilya-Vinogradov.FrozenDrawUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = FrozenDraw;

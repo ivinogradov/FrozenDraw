@@ -14,18 +14,7 @@
 	if (self=[super init]) {
 		_strokes = [NSMutableArray new];
 	}
-	
 	return self;
 }
-/*
-- (FDDrawingPath*) drawingPathForColor:(UIColor *)color {
-	FDDrawingPath * drawingPath = _colorsWithDrawingPaths[color];
-	if (!drawingPath) {
-		drawingPath = [FDDrawingPath new];
-		_colorsWithDrawingPaths[color] = drawingPath;
-	}
-	
-	return drawingPath;
-}
-*/
+
 @end
