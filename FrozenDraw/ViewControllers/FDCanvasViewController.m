@@ -4,6 +4,14 @@
 //
 //  Created by Ilya Vinogradov on 11/5/16.
 //
+//  This file is part of FrozenDraw(c).  FrozenDraw(c) is licenced under the MIT License.
+//  See http://opensource.org/licenses/MIT for detailed information.
+//
+//	The reference to FrozenDraw(c) is appreciated but not required in your own product.
+//	While the source code is licensed under the MIT License, that license doesn't cover the product's name.
+//	You may not release your product under names "FrozenDraw" or "Frozen Draw".
+//
+//  Copyright (c) 2016 Ilya Vinogradov. All rights reserved.
 //
 
 #import "FDCanvasViewController.h"
@@ -17,6 +25,10 @@
 
 // Size if the side of the square color button
 static const CGFloat kButtonDimension = 30.0;
+
+//privately conforming to protocols on the class continuation category
+@interface FDCanvasViewController () <FDColorPickerDelegate>
+@end
 
 @implementation FDCanvasViewController {
 	CAShapeLayer *_currentLayer;
@@ -97,9 +109,10 @@ static const CGFloat kButtonDimension = 30.0;
 
 #pragma mark - Delegate Callbacks
 
--(void)newColorPicked:(UIColor *)pickedColor {
+-(void)colorPicker:(FDColorPickerCollectionViewController *)picker didPickColor:(UIColor *)pickedColor {
 	_selectedColor = pickedColor;
 	_colorButton.tintColor = pickedColor;
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
  #pragma mark - Navigation
@@ -121,5 +134,4 @@ static const CGFloat kButtonDimension = 30.0;
 }
 
 @end
-
 
